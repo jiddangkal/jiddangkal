@@ -1,0 +1,10 @@
+{% extends 'share/base.html' %}
+{% block title %}게시글 작성{% endblock %}
+{% block style %}{% endblock %}
+{% block body %}
+<form action = "/app/new" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="uk-button uk-button-default">저장</button>
+</form>
+{% endblock %}

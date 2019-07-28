@@ -1,0 +1,47 @@
+{% extends 'share/base.html' %}
+{% block title %}{{board.title}}{% endblock %}
+{% block style %}
+    <style>
+        h1 {
+            color: red;
+        }
+    </style>
+{% endblock %}
+{% block body %}
+<center>
+    <div class="uk-card uk-card-default uk-card-hover uk-card-body uk-width-2-4@m">
+        {% if board %}
+            <h1 class="uk-card-title">{{board.title}}</h1>
+            <p>{{board.content}}</p>
+        {% else %}
+            <p>Empty....</p>
+        {% endif %}
+    </div>
+</center>
+<!--    <br>-->
+<!--    <div class="uk-card uk-card-default uk-card-default uk-card-body ">-->
+<!--        <h1 class="uk-card-title">Comments({{ board.comments.count }})</h1>-->
+<!--        <ul class="uk-comment-list">-->
+<!--            {% for comment in board.comments.all %}-->
+<!--                <li>-->
+<!--                    <article class="uk-comment-primary">-->
+<!--                        {{ comment.content }}-->
+<!--                    </article>-->
+<!--                </li>-->
+<!--            {% endfor %}-->
+<!--        </ul>-->
+<!--    </div>-->
+<!--    <form action="/app/board/{{ board.id }}/comment/new" method="post">-->
+<!--        {% csrf_token %}-->
+<!--        {{ form.as_p }}-->
+<!--        <div style="width: 95%; text-align: right">-->
+<!--        <button class="uk-button uk-button-default">댓글 추가</button>-->
+<!--        </div>-->
+<!--    </form>-->
+
+<div>
+    {% load disqus_tags %}
+    {% disqus_show_comments %}
+</div>
+
+{% endblock %}
